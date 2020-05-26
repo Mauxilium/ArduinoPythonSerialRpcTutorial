@@ -45,6 +45,7 @@ ARDUINO_FUNCTION_TO_CALL = "LedUpdate"
 class AsyncStatusAgent(Thread):
     def __init__(self, ar: ArduinoController):
         super(AsyncStatusAgent, self).__init__()
+        self.daemon = True
         self.arduino = ar
         self.is_active = True
         self.status = None

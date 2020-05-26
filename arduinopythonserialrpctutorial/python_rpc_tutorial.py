@@ -1,4 +1,4 @@
-import sys
+import time
 
 from arduinopythonserialrpctutorial.arduino_controller import ArduinoController
 
@@ -22,11 +22,10 @@ class PythonRpcTutorial:
             ctrl.stop()
             exit(-1)
 
-
-if __name__ == "__main__":
-    if len(sys.argv) == 3:
-        tutorial = PythonRpcTutorial()
-        tutorial.do_it(sys.argv[1], int(sys.argv[2]))
-    else:
-        print("\nPlease use: PythonRpcTutorial 'port' 'baudRate'")
-        print("I.e.: PythonRpcTutorial COM5 9600")
+        # Waiting Ctrl+C to terminate this tutorial
+        while True:
+            try:
+                time.sleep(1)
+            except KeyboardInterrupt:
+                ctrl.stop()
+                exit(0)
